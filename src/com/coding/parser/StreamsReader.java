@@ -13,8 +13,7 @@ import java.util.Iterator;
 
 
 public class StreamsReader {
-	private static MappedByteBuffer buffer;
-	private static PriorityQueue<FileItem> pq = new PriorityQueue<>();
+	private static PriorityQueue<FileItem> pq = new PriorityQueue<FileItem>();
 
 	public static void main(String[] args) {
 		if (args[0] != null) {
@@ -28,9 +27,9 @@ public class StreamsReader {
 			}
 		}
 		
-		Iterator<FileItem> iter = pq.iterator();
-		while (iter.hasNext()) {
-			System.out.println(iter.next());
+		while (!pq.isEmpty()) {
+			FileItem item = pq.poll();
+			System.out.println(item);
 		}
 	}
 	
@@ -39,6 +38,7 @@ public class StreamsReader {
 			lineStream.forEach(line -> {
 				int index = line.indexOf(keyword);
 				if (index != -1) {
+					System.out.println("index " + index);
 					pq.add(new FileItem(line, index));
 				}
 			});

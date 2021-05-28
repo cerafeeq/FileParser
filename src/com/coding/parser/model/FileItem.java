@@ -2,7 +2,7 @@ package com.coding.parser.model;
 
 public class FileItem implements Comparable<FileItem> {
 
-	private int index;
+	private Integer index;
 	private String token;
 	
 	public FileItem(String token, int index) {
